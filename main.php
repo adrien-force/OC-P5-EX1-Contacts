@@ -3,18 +3,20 @@ require 'contactManager.php';
 require 'contactAdmin.php';
 require 'command.php';
 
+echo "\nBienvenue dans le gestionnaire de contacts.\n";
+echo "Tapez help pour afficher la liste des commandes.\n";
+for ($i = 0; $i < 3; $i++) {
+    echo ".";
+    sleep(1);
+}
+echo "\n";
+
 while (true) {
-    echo "\nBienvenue dans le gestionnaire de contacts.\n";
-    echo "Tapez help pour afficher la liste des commandes.\n";
-    for ($i = 0; $i < 3; $i++) {
-        echo ".";
-        sleep(1);
-    }
-    echo "\n";
+    
 
 
     $line = readline("\nEntrez votre commande : ");
-    echo "Vous avez saisi : $line\n";
+    echo "Vous avez saisi : $line\n \n";
 
     if ($line == "help") {
         echo "Liste des commandes :\n";
@@ -75,6 +77,9 @@ while (true) {
             $command = new Command();
             echo $command->delete($id);
         }
+    }
+    if (!preg_match("/list|detail|create|modify|delete|exit|help/", $line)) {
+        echo "Commande non reconnue.\n";
     }
 
     if ($line == "exit") {
