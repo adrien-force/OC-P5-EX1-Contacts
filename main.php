@@ -28,6 +28,23 @@ while (true) {
         echo $command->create($name, $email, $phone_number);
     }
 
+    if (preg_match("/delete ([0-9a-zA-Z]+)/", $line, $matches)) {
+
+        $line2 = readline("Etes-vous sûr de vouloir supprimer ce contact ? (o/n) : ");
+        if ($line2 == "n") {
+            echo "Suppression annulée.\n";
+            continue;
+        }
+
+        if ($line2 == "o") {
+            $id = $matches[1];
+            $command = new Command();
+            echo $command->delete($id);
+        }
+        
+        
+    }
+
     if ($line == "exit") {
         break;
     }

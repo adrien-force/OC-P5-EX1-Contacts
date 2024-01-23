@@ -41,4 +41,18 @@ class Command {
         echo "Contact créé avec succès.\n";
     
 }
+    function delete($id) {
+        if (!is_numeric($id)) {
+            echo "L'id doit être un nombre.\n";
+            return;
+        }
+        try {
+            $contactManager = new ContactManager();
+            $contactManager->delete($id);
+            echo "Contact supprimé avec succès.\n";
+        } catch (Exception $e) {
+            echo "Contact introuvable avec l'id : $id.\n";
+        }
+    }
+
 }

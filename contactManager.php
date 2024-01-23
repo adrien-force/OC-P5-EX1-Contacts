@@ -16,6 +16,14 @@ class ContactManager extends DBConnect
             'phone_number' => $contact->getPhoneNumber()
         ]);
     }
+
+    function delete($id)
+    {
+        $mysqlClient = $this->getPDO();
+        $sqlQuery = 'DELETE FROM contact WHERE id = :id';
+        $contactstatement = $mysqlClient->prepare($sqlQuery);
+        $contactstatement->execute(['id' => $id]);
+    }
     function findAll()
     {
         $mysqlClient = $this->getPDO();
