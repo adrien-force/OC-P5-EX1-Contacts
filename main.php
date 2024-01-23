@@ -4,7 +4,7 @@ require 'contactAdmin.php';
 require 'command.php';
 
 while (true) {
-    $line = readline("Entrez votre commande : ");
+    $line = readline("\nEntrez votre commande : ");
     echo "Vous avez saisi : $line\n";
 
     if ($line == "list") {
@@ -17,8 +17,6 @@ while (true) {
         $id = $matches[1];
         $command = new Command();
         echo $command->detail($id);
-
-        //TODO Gerer le cas ou le contact n'existe pas avec l'id
     }
 
     if ($line == "exit") {
