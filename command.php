@@ -33,4 +33,12 @@ class Command {
 
         echo "finito\n";
     }
+
+    function create($name, $email, $phone_number) {
+        $contactManager = new ContactManager();
+        $contact = new Contact(null, $name, $email, $phone_number);
+        $contactManager->create($contact);
+        echo "Contact créé avec succès.\n";
+    
+}
 }

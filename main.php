@@ -19,6 +19,15 @@ while (true) {
         echo $command->detail($id);
     }
 
+    if (preg_match("/create ([0-9a-zA-Z]+) ([0-9a-zA-Z@.]+) ([0-9+]+)/", $line, $matches)) {
+        echo "Création d'un contact\n";
+        $name = $matches[1];
+        $email = $matches[2];
+        $phone_number = $matches[3];
+        $command = new Command();
+        echo $command->create($name, $email, $phone_number);
+    }
+
     if ($line == "exit") {
         break;
     }

@@ -4,6 +4,18 @@ require_once 'db.php';
 
 class ContactManager extends DBConnect
 {
+
+    function create($contact)
+    {
+        $mysqlClient = $this->getPDO();
+        $sqlQuery = 'INSERT INTO contact (name, email, phone_number) VALUES (:name, :email, :phone_number)';
+        $contactstatement = $mysqlClient->prepare($sqlQuery);
+        $contactstatement->execute([
+            'name' => $contact->getName(),
+            'email' => $contact->getEmail(),
+            'phone_number' => $contact->getPhoneNumber()
+        ]);
+    }
     function findAll()
     {
         $mysqlClient = $this->getPDO();
