@@ -79,7 +79,7 @@ while (true) {
         }
     }
     if (!preg_match("/list|detail|create|modify|delete|exit|help/", $line)) {
-        echo "Commande non reconnue.\n";
+        echo "Commande non reconnue. Tapez \"help\" pour afficher les commandes. \n";
     }
 
     if ($line == "exit") {

@@ -30,8 +30,6 @@ class Command {
         } else {
             echo "Contact introuvable avec l'id : $id.\n";
         }
-
-        echo "finito\n";
     }
 
     function create($name, $email, $phone_number) {
