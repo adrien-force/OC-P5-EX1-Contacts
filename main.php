@@ -1,7 +1,7 @@
 <?php
-require 'contactManager.php';
-require 'contactAdmin.php';
-require 'command.php';
+require 'ContactManager.php';
+require 'Contact.php';
+require 'Command.php';
 
 echo "\nBienvenue dans le gestionnaire de contacts.\n";
 echo "Tapez help pour afficher la liste des commandes.\n";
