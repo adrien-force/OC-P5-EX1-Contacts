@@ -14,6 +14,12 @@ class Command {
     }
 
     function detail($id) {
+
+        if (!is_numeric($id)) {
+            echo "L'id doit être un nombre.\n";
+            return;
+        }
+
         $contactManager = new ContactManager();
         $contact = $contactManager->findById($id);
 
@@ -24,5 +30,7 @@ class Command {
         } else {
             echo "Contact introuvable avec l'id : $id.\n";
         }
+
+        echo "finito\n";
     }
 }

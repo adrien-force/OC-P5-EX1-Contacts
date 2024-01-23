@@ -13,7 +13,7 @@ while (true) {
     }
 
     //add a detail command that understand the $id of the contact
-    if (preg_match("/detail ([0-9]+)/", $line, $matches)) {
+    if (preg_match("/detail ([0-9a-zA-Z]+)/", $line, $matches)) {
         $id = $matches[1];
         $command = new Command();
         echo $command->detail($id);
