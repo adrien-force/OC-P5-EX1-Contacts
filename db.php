@@ -1,15 +1,19 @@
 <?php
 
+require 'config.php';
+
 class DBConnect 
 {
     
     public function getPDO()
     {
+        $dbConfig = getConfig();
+
         try {
             $mysqlClient = new PDO(
-                'mysql:host=127.0.0.1:8889;dbname=p5-ex1',
-                'admin',
-                ''
+                "mysql:host={$dbConfig['host']};dbname={$dbConfig['dbname']}",
+                $dbConfig['user'],
+                $dbConfig['password']
             );
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
