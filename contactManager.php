@@ -47,4 +47,17 @@ class ContactManager extends DBConnect
 
         return $contact;
     }
+
+    function modify($contact)
+    {
+        $mysqlClient = $this->getPDO();
+        $sqlQuery = 'UPDATE contact SET name = :name, email = :email, phone_number = :phone_number WHERE id = :id';
+        $contactstatement = $mysqlClient->prepare($sqlQuery);
+        $contactstatement->execute([
+            'id' => $contact->getId(),
+            'name' => $contact->getName(),
+            'email' => $contact->getEmail(),
+            'phone_number' => $contact->getPhoneNumber()
+        ]);
+    }
 }

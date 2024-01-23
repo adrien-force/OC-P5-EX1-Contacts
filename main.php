@@ -37,6 +37,22 @@ while (true) {
         echo $command->create($name, $email, $phone_number);
     }
 
+    if (preg_match("/modify ([0-9a-zA-Z]+) ([0-9a-zA-Z]+) ([0-9a-zA-Z@.]+) ([0-9+]+)/", $line, $matches)) {
+        $line2 = readline("Etes-vous sûr de vouloir modifier ce contact ? (o/n) : ");
+        if ($line2 == "n") {
+            echo "Modification annulée.\n";
+            continue;
+        }
+        if ($line2 == "o") {
+            $id = $matches[1];
+            $name = $matches[2];
+            $email = $matches[3];
+            $phone_number = $matches[4];
+            $command = new Command();
+            echo $command->modify($id, $name, $email, $phone_number);
+        }
+    }
+
     if (preg_match("/delete ([0-9a-zA-Z]+)/", $line, $matches)) {
 
         $line2 = readline("Etes-vous sûr de vouloir supprimer ce contact ? (o/n) : ");
