@@ -14,12 +14,15 @@ class Command {
     }
 
     function detail($id) {
-        
         $contactManager = new ContactManager();
         $contact = $contactManager->findById($id);
-        
-        $detailledContact = new Contact($contact['id'], $contact['name'], $contact['email'], $contact['phone_number']);
-        echo "Détail du contact :\n";
-        echo $detailledContact->__toString() . "\n";
+
+        if ($contact) {
+            $detailledContact = new Contact($contact['id'], $contact['name'], $contact['email'], $contact['phone_number']);
+            echo "Détail du contact :\n";
+            echo $detailledContact->__toString() . "\n";
+        } else {
+            echo "Contact introuvable avec l'id : $id.\n";
+        }
     }
 }
