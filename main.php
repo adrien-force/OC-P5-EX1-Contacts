@@ -4,6 +4,15 @@ require 'contactAdmin.php';
 require 'command.php';
 
 while (true) {
+    echo "\nBienvenue dans le gestionnaire de contacts.\n";
+    echo "Tapez help pour afficher la liste des commandes.\n";
+    for ($i = 0; $i < 3; $i++) {
+        echo ".";
+        sleep(1);
+    }
+    echo "\n";
+
+
     $line = readline("\nEntrez votre commande : ");
     echo "Vous avez saisi : $line\n";
 
@@ -12,6 +21,7 @@ while (true) {
         echo "list : liste des contacts\n";
         echo "detail [id] : détail d'un contact\n";
         echo "create [name] [email] [phone_number] : créer un contact\n";
+        echo "modify [id] [name] [email] [phone_number] : modifier un contact\n";
         echo "delete [id] : supprimer un contact\n";
         echo "exit : quitter le programme\n";
     }
