@@ -1,6 +1,6 @@
 <?php
 
-require 'config.php';
+require 'config/config.php';
 
 /**
  * Class DBConnect
@@ -16,14 +16,20 @@ class DBConnect
      */
     public function getPDO()
     {
+
+        // Get the database configuration settings
         $dbConfig = getConfig();
 
+        // Create a new PDO object and return it
         try {
             $mysqlClient = new PDO(
                 "mysql:host={$dbConfig['host']};dbname={$dbConfig['dbname']}",
                 $dbConfig['user'],
                 $dbConfig['password']
             );
+
+        // If an error occurs, throw an Exception
+
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }

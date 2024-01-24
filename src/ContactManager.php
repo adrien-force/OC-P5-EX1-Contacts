@@ -8,7 +8,7 @@
  */
 
 
-require 'DBConnect.php';
+require 'src/DBConnect.php';
 
 class ContactManager extends DBConnect
 {

@@ -13,9 +13,9 @@
  * If the user enters an invalid command, an error message is displayed.
  */
 
-require 'ContactManager.php';
-require 'Contact.php';
-require 'Command.php';
+require 'src/ContactManager.php';
+require 'src/Contact.php';
+require 'src/Command.php';
 
 echo "\nBienvenue dans le gestionnaire de contacts.\n";
 echo "Tapez help pour afficher la liste des commandes.\n";
@@ -41,20 +41,20 @@ while (true) {
         echo "delete [id] : supprimer un contact\n";
         echo "exit : quitter le programme\n";
     }
-
+    // Process the user command and display the list of contacts
     if ($line == "list") {
         // Create a new Command object and call the list() method
         $command = new Command();
         echo $command->list();
     }
-    
+    // Process the user command and display the details of the contact with the given ID
     if (preg_match("/detail ([0-9a-zA-Z]+)/", $line, $matches)) {
         // Extract the contact ID from the command and call the detail() method
         $id = $matches[1];
         $command = new Command();
         echo $command->detail($id);
     }
-
+    // Process the user command and create a new contact
     if (preg_match("/create ([0-9a-zA-Z]+) ([0-9a-zA-Z@.]+) ([0-9+]+)/", $line, $matches)) {
         // Extract the contact details from the command and call the create() method
         echo "Création d'un contact\n";
@@ -64,7 +64,7 @@ while (true) {
         $command = new Command();
         echo $command->create($name, $email, $phone_number);
     }
-
+    // Process the user command and modify an existing contact
     if (preg_match("/modify ([0-9a-zA-Z]+) ([0-9a-zA-Z]+) ([0-9a-zA-Z@.]+) ([0-9+]+)/", $line, $matches)) {
         // Prompt the user for confirmation before modifying the contact
         $line2 = readline("Etes-vous sûr de vouloir modifier ce contact ? (o/n) : ");
@@ -83,6 +83,7 @@ while (true) {
         }
     }
 
+    // Process the user command and delete an existing contact
     if (preg_match("/delete ([0-9a-zA-Z]+)/", $line, $matches)) {
         // Prompt the user for confirmation before deleting the contact
         $line2 = readline("Etes-vous sûr de vouloir supprimer ce contact ? (o/n) : ");
@@ -97,13 +98,14 @@ while (true) {
             echo $command->delete($id);
         }
     }
+
+    // Display an error message for unrecognized commands
     if (!preg_match("/list|detail|create|modify|delete|exit|help/", $line)) {
-        // Display an error message for unrecognized commands
         echo "Commande non reconnue. Tapez \"help\" pour afficher les commandes. \n";
     }
 
+    // Exit the loop and terminate the program
     if ($line == "exit") {
-        // Exit the loop and terminate the program
         break;
     }
 }

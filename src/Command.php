@@ -85,6 +85,8 @@ class Command {
      * @param string $phone_number The new phone number of the contact.
      */
     function modify($id, $name, $email, $phone_number) {
+
+        // Validate the contact details
         if (!is_numeric($id)) {
             echo "L'id doit être un nombre.\n";
             return;
@@ -101,6 +103,8 @@ class Command {
             echo "Le numéro de téléphone doit contenir au moins 10 chiffres.\n";
             return;
         }
+
+        // Modify the contact
         try {
             $contactManager = new ContactManager();
             $contact = new Contact($id, $name, $email, $phone_number);
