@@ -2,9 +2,18 @@
 
 require 'config.php';
 
+/**
+ * Class DBConnect
+ * Represents a database connection.
+ */
 class DBConnect 
 {
     
+    /**
+     * Get the PDO object for the database connection.
+     *
+     * @return PDO The PDO object.
+     */
     public function getPDO()
     {
         $dbConfig = getConfig();

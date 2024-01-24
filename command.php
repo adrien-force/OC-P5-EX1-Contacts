@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * The Command class represents a set of commands for managing contacts.
+ */
 class Command {
 
+    /**
+     * Lists all the contacts.
+     */
     function list() {
         echo "Liste des contacts :\n";
         $contactManager = new ContactManager();
@@ -13,6 +19,11 @@ class Command {
         }
     }
 
+    /**
+     * Displays the details of a contact with the given ID.
+     *
+     * @param int $id The ID of the contact.
+     */
     function detail($id) {
 
         if (!is_numeric($id)) {
@@ -32,13 +43,25 @@ class Command {
         }
     }
 
+    /**
+     * Creates a new contact with the given name, email, and phone number.
+     *
+     * @param string $name The name of the contact.
+     * @param string $email The email of the contact.
+     * @param string $phone_number The phone number of the contact.
+     */
     function create($name, $email, $phone_number) {
         $contactManager = new ContactManager();
-        $contact = new Contact(null, $name, $email, $phone_number);
+        $contact = new Contact(0, $name, $email, $phone_number);
         $contactManager->create($contact);
         echo "Contact créé avec succès.\n";
-    
-}
+    }
+
+    /**
+     * Deletes the contact with the given ID.
+     *
+     * @param int $id The ID of the contact.
+     */
     function delete($id) {
         if (!is_numeric($id)) {
             echo "L'id doit être un nombre.\n";
@@ -53,6 +76,14 @@ class Command {
         }
     }
 
+    /**
+     * Modifies the contact with the given ID, name, email, and phone number.
+     *
+     * @param int $id The ID of the contact.
+     * @param string $name The new name of the contact.
+     * @param string $email The new email of the contact.
+     * @param string $phone_number The new phone number of the contact.
+     */
     function modify($id, $name, $email, $phone_number) {
         if (!is_numeric($id)) {
             echo "L'id doit être un nombre.\n";
