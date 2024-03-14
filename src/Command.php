@@ -35,9 +35,9 @@ class Command {
         $contact = $contactManager->findById($id);
 
         if ($contact) {
-            $detailledContact = new Contact($contact['id'], $contact['name'], $contact['email'], $contact['phone_number']);
+            $detailedContact = new Contact($contact['id'], $contact['name'], $contact['email'], $contact['phone_number']);
             echo "Détail du contact :\n";
-            echo $detailledContact->__toString() . "\n";
+            echo $detailedContact->__toString() . "\n";
         } else {
             echo "Contact introuvable avec l'id : $id.\n";
         }
@@ -86,7 +86,7 @@ class Command {
      */
     function modify($id, $name, $email, $phone_number) {
 
-        // Validate the contact details
+        // Validates the contact details
         if (!is_numeric($id)) {
             echo "L'id doit être un nombre.\n";
             return;
@@ -104,7 +104,7 @@ class Command {
             return;
         }
 
-        // Modify the contact
+        // Modifies the contact
         try {
             $contactManager = new ContactManager();
             $contact = new Contact($id, $name, $email, $phone_number);

@@ -42,8 +42,8 @@ class ContactManager extends DBConnect
     {
         $mysqlClient = $this->getMysqlClient();
         $sqlQuery = 'INSERT INTO contact (name, email, phone_number) VALUES (:name, :email, :phone_number)';
-        $contactstatement = $mysqlClient->prepare($sqlQuery);
-        $contactstatement->execute([
+        $contactStatement = $mysqlClient->prepare($sqlQuery);
+        $contactStatement->execute([
             'name' => $contact->getName(),
             'email' => $contact->getEmail(),
             'phone_number' => $contact->getPhoneNumber()
@@ -60,8 +60,8 @@ class ContactManager extends DBConnect
     {
         $mysqlClient = $this->getMysqlClient();
         $sqlQuery = 'DELETE FROM contact WHERE id = :id';
-        $contactstatement = $mysqlClient->prepare($sqlQuery);
-        $contactstatement->execute(['id' => $id]);
+        $contactStatement = $mysqlClient->prepare($sqlQuery);
+        $contactStatement->execute(['id' => $id]);
     }
 
     /**
@@ -73,9 +73,9 @@ class ContactManager extends DBConnect
     {
         $mysqlClient = $this->getMysqlClient();
         $sqlQuery = 'SELECT * FROM contact';
-        $contactstatement = $mysqlClient->prepare($sqlQuery);
-        $contactstatement->execute();
-        $contacts = $contactstatement->fetchAll(PDO::FETCH_ASSOC);
+        $contactStatement = $mysqlClient->prepare($sqlQuery);
+        $contactStatement->execute();
+        $contacts = $contactStatement->fetchAll(PDO::FETCH_ASSOC);
 
         return $contacts;
     }
@@ -90,9 +90,9 @@ class ContactManager extends DBConnect
     {
         $mysqlClient = $this->getMysqlClient();
         $sqlQuery = 'SELECT * FROM contact WHERE id = :id';
-        $contactstatement = $mysqlClient->prepare($sqlQuery);
-        $contactstatement->execute(['id' => $id]);
-        $contact = $contactstatement->fetch(PDO::FETCH_ASSOC);
+        $contactStatement = $mysqlClient->prepare($sqlQuery);
+        $contactStatement->execute(['id' => $id]);
+        $contact = $contactStatement->fetch(PDO::FETCH_ASSOC);
 
         return $contact;
     }
@@ -107,8 +107,8 @@ class ContactManager extends DBConnect
     {
         $mysqlClient = $this->getMysqlClient();
         $sqlQuery = 'UPDATE contact SET name = :name, email = :email, phone_number = :phone_number WHERE id = :id';
-        $contactstatement = $mysqlClient->prepare($sqlQuery);
-        $contactstatement->execute([
+        $contactStatement = $mysqlClient->prepare($sqlQuery);
+        $contactStatement->execute([
             'id' => $contact->getId(),
             'name' => $contact->getName(),
             'email' => $contact->getEmail(),
